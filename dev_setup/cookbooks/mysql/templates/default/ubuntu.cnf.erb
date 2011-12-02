@@ -19,6 +19,7 @@
 [client]
 port		= 3306
 socket		= /var/run/mysqld/mysqld.sock
+default-character-set = utf8
 
 # Here is entries for some specific programs
 # The following values assume you have at least 32M ram
@@ -46,6 +47,7 @@ basedir		= /usr
 datadir		= /var/lib/mysql
 tmpdir		= /tmp
 skip-external-locking
+default-character-set = utf8
 #
 # Instead of skip-networking the default is now to listen only on
 # localhost which is more compatible and is not less secure.
@@ -120,6 +122,7 @@ max_allowed_packet	= 16M
 
 [mysql]
 #no-auto-rehash	# faster start of mysql but no tab completition
+default-character-set = utf8
 
 [isamchk]
 key_buffer		= 16M
