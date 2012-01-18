@@ -4,7 +4,7 @@ module RubyInstall
     bundler_version = node[:rubygems][:bundler][:version]
     rake_version = node[:rubygems][:rake][:version]
 
-    %w[ build-essential libssl-dev zlib1g-dev libreadline5-dev libxml2-dev libpq-dev].each do |pkg|
+    %w[ build-essential libssl-dev zlib1g-dev libreadline-dev libxml2-dev libpq-dev].each do |pkg|
       package pkg
     end
 
@@ -27,6 +27,7 @@ module RubyInstall
       user node[:deployment][:user]
       code <<-EOH
       tar xzf ruby-#{ruby_version}.tar.gz
+      patch ruby-#{ruby_version}/ext/openssl/ossl_ssl.c < /srv/vcap/dev_setup/cookbooks/ruby/patch/ossl_ssl.c.patch
       cd ruby-#{ruby_version}
       ./configure --disable-pthread --prefix=#{ruby_path}
       make
