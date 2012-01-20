@@ -1,5 +1,5 @@
 include_attribute "deployment"
-default[:redis][:version] = "2.2.4"
+default[:redis][:version] = "2.2.15"
 default[:redis][:path] = File.join(node[:deployment][:home], "deploy", "redis")
 default[:redis][:runner] = node[:deployment][:user]
 default[:redis][:port] = 6379
