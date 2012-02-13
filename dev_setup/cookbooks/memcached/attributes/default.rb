@@ -1,5 +1,5 @@
 include_attribute "deployment"
-default[:memcached][:version] = "1.4.9"
+default[:memcached][:version] = "1.4.13"
 default[:memcached][:path] = File.join(node[:deployment][:home], "deploy", "memcached")
 default[:memcached][:runner] = node[:deployment][:user]
 default[:memcached][:port] = 11211
