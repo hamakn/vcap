@@ -80,6 +80,11 @@ class GemfileTask
     dependencies.assoc('rack')
   end
 
+  # The application includes some version of Rack in its bundle.
+  def bundles_rails?
+    dependencies.assoc('rails')
+  end
+
   # Each dependency is a gem [name, version] pair;
   # e.g. ['thin', '1.2.10']
   def install_gems(gems)
