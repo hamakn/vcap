@@ -9,7 +9,7 @@ end
 
 # Config template for stager
 class VCAP::Stager::Config < VCAP::Config
-  DEFAULT_CONFIG_PATH = File.expand_path('../../../../config/dev.yml', __FILE__)
+  DEFAULT_CONFIG_PATH = File.expand_path('../../../../config/stager.yml', __FILE__)
 
   define_schema do
     { :logging => {

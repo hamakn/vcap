@@ -29,3 +29,6 @@ default[:cloud_controller][:builtin_services] = ["redis", "mongodb", "mysql", "n
 default[:capacity][:max_uris] = 4
 default[:capacity][:max_services] = 16
 default[:capacity][:max_apps] = 20
+
+# Stager
+default[:cloud_contrller][:new_stager_percent] = "0"

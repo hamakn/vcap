@@ -1,0 +1,15 @@
+include_recipe "deployment"
+default[:stager][:config_file] = "stager.yml"
+default[:stager][:secure] = "false"
+
+# Staging
+default[:stager][:staging][:grails] = "grails.yml"
+default[:stager][:staging][:lift] = "lift.yml"
+default[:stager][:staging][:node] = "node.yml"
+default[:stager][:staging][:otp_rebar] = "otp_rebar.yml"
+default[:stager][:staging][:platform] = "platform.yml"
+default[:stager][:staging][:rails3] = "rails3.yml"
+default[:stager][:staging][:sinatra] = "sinatra.yml"
+default[:stager][:staging][:spring] = "spring.yml"
+default[:stager][:staging][:java_web] = "java_web.yml"
+default[:stager][:staging][:php] = "php.yml"
