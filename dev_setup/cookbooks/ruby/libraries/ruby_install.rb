@@ -27,7 +27,7 @@ module RubyInstall
       user node[:deployment][:user]
       code <<-EOH
       tar xzf ruby-#{ruby_version}.tar.gz
-      patch ruby-#{ruby_version}/ext/openssl/ossl_ssl.c < /srv/vcap/dev_setup/cookbooks/ruby/patch/ossl_ssl.c.patch
+      patch ruby-#{ruby_version}/ext/openssl/ossl_ssl.c < #{node[:cloudfoundry][:home]}/vcap/dev_setup/cookbooks/ruby/patch/ossl_ssl.c.patch
       cd ruby-#{ruby_version}
       ./configure --disable-pthread --prefix=#{ruby_path}
       make
