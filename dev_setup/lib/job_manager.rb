@@ -33,7 +33,7 @@ class JobManager
   end
 
   # All supported jobs
-  JOBS = [ALL, NATS, ROUTER, CF, CC, HM, DEA, CCDB, UAA, UAADB] + SERVICES_NODE + SERVICES_GATEWAY
+  JOBS = [ALL, NATS, ROUTER, CF, CC, HM, DEA, CCDB] + SERVICES_NODE + SERVICES_GATEWAY
   SYSTEM_JOB = [CF]
 
   # List of the required properties for jobs
