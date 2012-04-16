@@ -2,4 +2,5 @@
 
 home = File.join(File.dirname(__FILE__), '/..')
 ENV['BUNDLE_GEMFILE'] = "#{home}/Gemfile"
+ENV['LANG'] = "C"
 require File.join(home, 'lib/dea')
