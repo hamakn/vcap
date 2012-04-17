@@ -315,6 +315,8 @@ module Run
     puts
     kill_service_instances('neo4j', /neo4j/ )
     puts
+    kill_service_instances('memcached', /memcached/ )
+    puts
 
     puts "Cleaning shared directories:"
     dirs = %w[/var/vcap/services /var/vcap/shared /var/vcap/sys /var/vcap.local/* /tmp/vcap-run]
