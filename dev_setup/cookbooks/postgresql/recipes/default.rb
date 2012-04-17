@@ -20,14 +20,17 @@ when "ubuntu"
       # update postgresql.conf
       postgresql_conf_file = File.join("", "etc", "postgresql", pg_major_version, "main", "postgresql.conf")
       `grep "^\s*listen_addresses" #{postgresql_conf_file}`
+      address = [node[:postgresql][:listen_address], "localhost"]
+      address << node[:ccdb][:host] if node[:ccdb]
+      address.uniq!.compact!
       if $?.exitstatus != 0
-        `echo "listen_addresses='#{node[:postgresql][:host]},localhost'" >> #{postgresql_conf_file}`
+        `echo "listen_addresses='#{address.join(',')}'" >> #{postgresql_conf_file}`
       else
-        `sed -i.bkup -e "s/^\s*listen_addresses.*$/listen_addresses='#{node[:postgresql][:host]},localhost'/" #{postgresql_conf_file}`
+        `sed -i.bkup -e "s/^\s*listen_addresses.*$/listen_addresses='#{address.join(',')}'/" #{postgresql_conf_file}`
       end
 
       # Cant use service resource as service name needs to be statically defined
-      `#{File.join("", "etc", "init.d", "postgresql-#{pg_major_version}")} restart`
+      `#{File.join("", "etc", "init.d", "postgresql")} restart`
     end
   end
 else
