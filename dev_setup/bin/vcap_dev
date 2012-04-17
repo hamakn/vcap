@@ -15,10 +15,18 @@ options = {}
 opts = OptionParser.new do |opts|
   opts.banner = "Usage: #{$0} [--name deployment_name] [--dir cloudfoundry_home_dir] [start|stop|restart|tail|status]"
   opts.on("-n", "--name deployment_name", "Name of the deployment") do |n|
-    options["name"] = n
+    if n == "all"
+      STDERR.puts "INFO: Ignore '-n all' for eratta. See more information: https://github.com/hamakn/software-design-2012-04/issues/1".yellow
+    else
+      options["name"] = n
+    end
   end
   opts.on("-d", "--dir cloud_foundry_home_dir", "Cloud foundry home directory") do |n|
-    options["home"] = n
+    if n == "/srv"
+      STDERR.puts "INFO: Ignore '-d /srv' for eratta. See more information: https://github.com/hamakn/software-design-2012-04/issues/1".yellow
+    else
+      options["home"] = n
+    end
   end
 end
 opts.order!(ARGV)
@@ -89,3 +97,22 @@ vcap_launch = File.join(script_dir, "vcap")
 
 puts "Using cloudfoundry config from #{deployment_config_path}"
 exec_cmd("#{ruby_binary} #{vcap_launch} #{ARGV[0].downcase} #{vcap_components["components"].join(" ")} -c #{deployment_config_path} -v #{vcap_path} -l #{deployment_info["deployment_log_path"]}")
+
+module VcapStringExtensions
+
+  def yellow
+    colorize("\e[0m\e[33m")
+  end
+
+  def colorize(color_code)
+    unless $nocolor
+      "#{color_code}#{self}\e[0m"
+    else
+      self
+    end
+  end
+end
+
+class String
+  include VcapStringExtensions
+end
