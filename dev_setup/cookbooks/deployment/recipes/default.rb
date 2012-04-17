@@ -61,3 +61,7 @@ file node[:deployment][:local_run_profile] do
     export CLOUD_FOUNDRY_CONFIG_PATH=#{node[:deployment][:config_path]}
   EOH
 end
+
+directory ENV['home'] do
+  mode "0755"
+end
