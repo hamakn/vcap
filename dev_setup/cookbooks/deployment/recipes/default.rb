@@ -62,6 +62,6 @@ file node[:deployment][:local_run_profile] do
   EOH
 end
 
-directory ENV['home'] do
+directory ENV['HOME'] do
   mode "0755"
 end
