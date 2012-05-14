@@ -97,7 +97,7 @@ fi
 
 # Install chef
 if ! (apt-cache policy | grep opscode); then
-  echo "deb http://apt.opscode.com/ `lsb_release -cs` main" | sudo tee /etc/apt/sources.list.d/opscode.list
+  echo "deb http://apt.opscode.com/ lucid main" | sudo tee /etc/apt/sources.list.d/opscode.list
   wget -qO - http://apt.opscode.com/packages@opscode.com.gpg.key | sudo apt-key add -
   echo chef chef/chef_server_url select none | sudo /usr/bin/debconf-set-selections
 fi
