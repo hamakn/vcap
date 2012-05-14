@@ -96,13 +96,13 @@ if [ $? == 0 ]; then
 fi
 
 # Install chef
-if ! (apt-cache policy | grep opscode); then
-  echo "deb http://apt.opscode.com/ `lsb_release -cs`-0.10 main" | sudo tee /etc/apt/sources.list.d/opscode.list
+#if ! (apt-cache policy | grep opscode); then
+  echo "deb http://apt.opscode.com/ lucid main" | sudo tee /etc/apt/sources.list.d/opscode.list
   wget -qO - http://apt.opscode.com/packages@opscode.com.gpg.key | sudo apt-key add -
   echo chef chef/chef_server_url select none | sudo /usr/bin/debconf-set-selections
-fi
+#fi
 run_cmd apt-get $APT_CONFIG update -qq
-run_cmd apt-get $APT_CONFIG install -qym chef
+run_cmd apt-get $APT_CONFIG install -qym chef=0.9.18+dfsg-1
 
 run_cmd apt-get $APT_CONFIG install -qym git-core
 [ -d $CLOUDFOUNDRY_HOME ] || mkdir $CLOUDFOUNDRY_HOME
